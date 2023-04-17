@@ -8,27 +8,27 @@ from keras.layers import LSTM, Dense
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
-# # Определите URL-адрес API и параметры запроса
-# url = 'https://api.binance.com/api/v3/klines'
-# params = {
-#     'symbol': 'BTCUSDT', # торговая пара
-#     'interval': '1h', # временной интервал
-#     'limit': 1000 # количество записей
-# }
+# Определите URL-адрес API и параметры запроса
+url = 'https://api.binance.com/api/v3/klines'
+params = {
+    'symbol': 'BTCUSDT', # торговая пара
+    'interval': '1h', # временной интервал
+    'limit': 1000 # количество записей
+}
 
-# # Сделайте GET-запрос и получите ответ в формате JSON
-# response = requests.get(url, params=params)
-# data = response.json()
+# Сделайте GET-запрос и получите ответ в формате JSON
+response = requests.get(url, params=params)
+data = response.json()
 
-# # Преобразование данных в Pandas DataFrame
-# df = pd.DataFrame(data, columns=['open_time', 'open', 'high', 'low', 'close', 'volume', 'close_time', 'quote_asset_volume', 'number_of_trades', 'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume', 'ignored'])
+# Преобразование данных в Pandas DataFrame
+df = pd.DataFrame(data, columns=['open_time', 'open', 'high', 'low', 'close', 'volume', 'close_time', 'quote_asset_volume', 'number_of_trades', 'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume', 'ignored'])
 
-# # Преобразование времени в Pandas datetime
-# df['open_time'] = pd.to_datetime(df['open_time'], unit='ms')
-# df['close_time'] = pd.to_datetime(df['close_time'], unit='ms')
+# Преобразование времени в Pandas datetime
+df['open_time'] = pd.to_datetime(df['open_time'], unit='ms')
+df['close_time'] = pd.to_datetime(df['close_time'], unit='ms')
 
-# # Сохранение данных в CSV-файл
-# df.to_csv('btcusdt.csv', index=False)
+# Сохранение данных в CSV-файл
+df.to_csv('btcusdt.csv', index=False)
 
 # Чтение CSV-файла в Pandas DataFrame
 df = pd.read_csv('btcusdt.csv')
