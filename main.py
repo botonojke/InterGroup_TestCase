@@ -102,11 +102,6 @@ mse_np = mse.numpy()
 for i in range(len(mse_np)):
     print('Group %d MSE: %.6f' % (i+1, mse_np[i]))
 
-
-
-
-
-
 # Построение графика
 plt.figure(figsize=(12, 6))
 plt.plot(y_test, label='Actual')
